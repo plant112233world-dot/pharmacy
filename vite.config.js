@@ -12,11 +12,15 @@ function jsonDbPlugin() {
         try {
           const dbPath = path.resolve(__dirname, 'data/db.json');
           const srcDbPath = path.resolve(__dirname, 'src/data/db.json');
+          const publicDbPath = path.resolve(__dirname, 'public/db.json');
           const parsed = JSON.parse(body);
           const jsonString = JSON.stringify(parsed, null, 2);
           fs.writeFileSync(dbPath, jsonString, 'utf-8');
           if (fs.existsSync(path.dirname(srcDbPath))) {
             fs.writeFileSync(srcDbPath, jsonString, 'utf-8');
+          }
+          if (fs.existsSync(path.dirname(publicDbPath))) {
+            fs.writeFileSync(publicDbPath, jsonString, 'utf-8');
           }
           res.statusCode = 200;
           res.setHeader('Content-Type', 'application/json');
@@ -66,7 +70,7 @@ export default defineConfig({
     port: 3000,
     open: true,
     watch: {
-      ignored: ['**/data/**', '**/db.json', '**/src/data/**']
+      ignored: ['**/data/**', '**/db.json', '**/src/data/**', '**/public/**']
     }
   }
 });

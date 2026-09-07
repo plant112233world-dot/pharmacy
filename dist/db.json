@@ -1,0 +1,141 @@
+{
+  "shopInfo": {
+    "name": "Yellow Pharmacy",
+    "logoIcon": "💊",
+    "licenseNo": "DL-2024-8849X",
+    "address": "Shop No. 12, Main Market, Delhi",
+    "phone": "+91 98765 43210",
+    "owner": "Dr. Rajesh Sharma, B.Pharm",
+    "gstNo": "07AAAAA0000A1Z5"
+  },
+  "medicines": [
+    {
+      "id": "MED-107",
+      "name": "Pantocid 40mg",
+      "genericName": "Pantoprazole",
+      "category": "stomach",
+      "supplierId": "SUP-101",
+      "supplierName": "Sun Pharma Agency",
+      "batchNo": "PNT-6623",
+      "rackNo": "Rack C-1",
+      "price": 110,
+      "costPrice": 78,
+      "stock": 95,
+      "minStock": 30,
+      "expiryDate": "2027-06-22"
+    },
+    {
+      "id": "MED-108",
+      "name": "Amoxyclav 625mg",
+      "genericName": "Amoxicillin + Clavulanate",
+      "category": "antibiotics",
+      "supplierId": "SUP-103",
+      "supplierName": "Apollo Med Distributors",
+      "batchNo": "AMX-9911",
+      "rackNo": "Rack D-1",
+      "price": 198,
+      "costPrice": 145,
+      "stock": 50,
+      "minStock": 20,
+      "expiryDate": "2026-10-05"
+    }
+  ],
+  "expenses": [],
+  "suppliers": [
+    {
+      "id": "SUP-101",
+      "name": "Sun Pharma Agency",
+      "contactPerson": "Mr. Suresh Kumar",
+      "phone": "+91 98220 11223",
+      "address": "B-14, Medicine Market, Chandni Chowk, Delhi",
+      "dueBalance": 12500,
+      "suppliedMedicines": [
+        "Dolo 650mg",
+        "Combiflam",
+        "Zincovit",
+        "Pantocid 40mg"
+      ]
+    },
+    {
+      "id": "SUP-102",
+      "name": "GSK Wholesale",
+      "contactPerson": "Mr. Ramesh Sharma",
+      "phone": "+91 98771 33445",
+      "address": "Shop 4, Pharma Hub, Noida",
+      "dueBalance": -1500,
+      "suppliedMedicines": [
+        "Calpol Syrup",
+        "Revital H Capsules"
+      ]
+    },
+    {
+      "id": "SUP-103",
+      "name": "Apollo Med Distributors",
+      "contactPerson": "Dr. Vikas Verma",
+      "phone": "+91 99112 55667",
+      "address": "Plot 88, Industrial Area, Gurgaon",
+      "dueBalance": 8400,
+      "suppliedMedicines": [
+        "Disprin 325mg",
+        "Amoxyclav 625mg"
+      ]
+    }
+  ],
+  "udhaarList": [
+    {
+      "id": "UDH-1",
+      "customerName": "Rahul Verma",
+      "phone": "+91 98112 34567",
+      "dueDate": "2026-09-10",
+      "totalDueAmount": 850,
+      "paidAmount": 300,
+      "remainingAmount": 550,
+      "notes": "Bought Dolo & Pantocid on credit"
+    },
+    {
+      "id": "UDH-2",
+      "customerName": "Mohan Lal (Tea Shop)",
+      "phone": "+91 98711 99887",
+      "dueDate": "2026-09-15",
+      "totalDueAmount": 1200,
+      "paidAmount": 0,
+      "remainingAmount": 1200,
+      "notes": "Monthly medicine credit account"
+    }
+  ],
+  "stockLogs": [
+    {
+      "id": "LOG-1788504033585",
+      "medicineName": "Dolo 650mg",
+      "type": "IN",
+      "qty": 500,
+      "date": "12:10 PM 9/4/2026",
+      "note": "Supplier Restock"
+    },
+    {
+      "id": "LOG-1",
+      "medicineName": "Dolo 650mg",
+      "type": "IN",
+      "qty": 50,
+      "date": "2026-09-04 10:15 AM",
+      "note": "Supplier Restock"
+    },
+    {
+      "id": "LOG-2",
+      "medicineName": "Calpol 500mg Syrup",
+      "type": "OUT",
+      "qty": 10,
+      "date": "2026-09-04 09:30 AM",
+      "note": "Counter Sale"
+    },
+    {
+      "id": "LOG-3",
+      "medicineName": "Combiflam Tablet",
+      "type": "IN",
+      "qty": 100,
+      "date": "2026-09-03 04:20 PM",
+      "note": "Batch Arrival"
+    }
+  ],
+  "healthRecords": []
+}

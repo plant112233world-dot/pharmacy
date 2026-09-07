@@ -35,7 +35,8 @@ import {
   BookOpen,
   DollarSign,
   Settings,
-  LogOut
+  LogOut,
+  Download
 } from 'lucide-react';
 
 const categoryIcons = {
@@ -71,7 +72,8 @@ const MainAppContent = () => {
     lowStockCount,
     expiredCount,
     expiringSoonCount,
-    logout
+    logout,
+    exportDbJson
   } = useApp();
 
   // Active Navigation Tab: 'stock', 'finance', 'suppliers_udhaar', 'health'
@@ -226,6 +228,15 @@ const MainAppContent = () => {
                 <span>+ Add Medicine</span>
               </button>
             )}
+
+            <button
+              onClick={exportDbJson}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold text-xs shadow-sm transition cursor-pointer whitespace-nowrap"
+              title="Download current database as db.json file"
+            >
+              <Download className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Download db.json</span>
+            </button>
 
             <button
               onClick={() => setSettingsOpen(true)}

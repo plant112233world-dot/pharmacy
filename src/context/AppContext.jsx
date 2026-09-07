@@ -108,12 +108,15 @@ export const AppProvider = ({ children }) => {
     showToast('Logged out of Pharmacy Admin successfully.', 'info');
   };
 
-  // Fetch database from project db.json on initial load
+  // Fetch database from project db.json or bundled /db.json on initial load
   useEffect(() => {
     fetch('/api/get-db')
       .then(res => {
         if (res.ok) return res.json();
-        throw new Error('No disk DB server endpoint');
+        return fetch('/db.json').then(r => {
+          if (r.ok) return r.json();
+          throw new Error('No DB file endpoint');
+        });
       })
       .then(data => {
         if (data && typeof data === 'object') {
@@ -328,6 +331,36 @@ export const AppProvider = ({ children }) => {
     return diffDays <= days;
   };
 
+  // Data Backup Export (db.json Direct Download)
+  const exportDbJson = () => {
+    try {
+      const dbData = {
+        shopInfo,
+        medicines,
+        expenses,
+        suppliers,
+        udhaarList,
+        stockLogs,
+        healthRecords
+      };
+
+      const jsonStr = JSON.stringify(dbData, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `db.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast('Downloaded live database as db.json!', 'success');
+    } catch (err) {
+      showToast('Export failed: ' + err.message, 'danger');
+    }
+  };
+
   // Data Backup Export (JSON Download)
   const exportBackupJSON = () => {
     try {
@@ -339,7 +372,8 @@ export const AppProvider = ({ children }) => {
         expenses,
         suppliers,
         udhaarList,
-        stockLogs
+        stockLogs,
+        healthRecords
       };
 
       const jsonStr = JSON.stringify(backupData, null, 2);
@@ -372,6 +406,7 @@ export const AppProvider = ({ children }) => {
       if (Array.isArray(backupObj.suppliers)) setSuppliers(backupObj.suppliers);
       if (Array.isArray(backupObj.udhaarList)) setUdhaarList(backupObj.udhaarList);
       if (Array.isArray(backupObj.stockLogs)) setStockLogs(backupObj.stockLogs);
+      if (Array.isArray(backupObj.healthRecords)) setHealthRecords(backupObj.healthRecords);
 
       showToast('Shop database restored successfully from JSON backup file!', 'success');
     } catch (err) {
@@ -418,6 +453,7 @@ export const AppProvider = ({ children }) => {
       recordSupplierPayment,
       addCustomerUdhaar,
       payCustomerUdhaar,
+      exportDbJson,
       exportBackupJSON,
       importBackupJSON,
       isMedicineExpired,
